@@ -4,13 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const fs_1 = __importDefault(require("fs"));
+const images_1 = __importDefault(require("./routes/images"));
 const app = (0, express_1.default)();
-const port = 3000;
-app.get("/", () => {
-    var img = fs_1.default.readFile("../images/fjord.jpg", (err, data) => {
-        if (err)
-            throw err;
-        console.log(data);
-    });
+const port = 5000;
+app.use(express_1.default.static("public"));
+app.use("/image", images_1.default);
+app.listen(port, () => {
+    console.log(`listen to port: http://localhost:${port}`);
 });
+exports.default = app;
