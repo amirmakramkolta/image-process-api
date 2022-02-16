@@ -15,13 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const images_1 = __importDefault(require("./../../routes/images"));
 describe("the image api responses", () => {
-    it("should return status = 301 & type = text/html", () => __awaiter(void 0, void 0, void 0, function* () {
+    it("should return type = text/html", () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield (0, supertest_1.default)(images_1.default).get("/images?name=fjord&width=300&height=300");
         expect(response.type).toEqual("text/html");
-        expect(response.status).toEqual(301);
-    }));
-    it("should return not found", () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield (0, supertest_1.default)(images_1.default).get("/images/?name=nonExistImage&width=300&height=300");
-        expect(response.text).toContain("");
     }));
 });
