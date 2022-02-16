@@ -7,30 +7,36 @@ const routes = express.Router();
 routes.use(express.static('public'));
 
 routes.get('/', (req, res) => {
-  const imgName = req.query.name as unknown as string;
-  const imgWidth = req.query.width as string;
-  const imgHeight = req.query.height as string;
+  const imgName: string | null = req.query.name as unknown as string;
+  const imgWidth: string | null = req.query.width as string;
+  const imgHeight: string | null = req.query.height as string;
 
-  const newImgName = `${imgName}_${imgWidth}_${imgHeight}.jpg`;
-  fs.access(`./public/thumbnails/${newImgName}`, (err) => {
-    if (err) {
-      fs.access(`./public/images/${imgName}.jpg`, (err) => {
-        if (err) {
-          res.send('file does not exist');
-        } else {
-          fs.readFile(`./public/images/${imgName}.jpg`, (err, data) => {
-            if (err) throw err;
-            sharp(data)
-              .resize(parseInt(imgWidth), parseInt(imgHeight))
-              .toFile(`./public/thumbnails/${newImgName}`);
-            res.send(`<img src="/thumbnails/${newImgName}" />`);
-          });
-        }
-      });
-    } else {
-      res.send(`<img src="/thumbnails/${newImgName}" />`);
-    }
-  });
+  if (imgHeight == null || imgWidth == null || imgName == null) {
+    res.send('Their is attribute(s) in query is missing');
+  } else if (isNaN(parseInt(imgHeight)) || isNaN(parseInt(imgWidth))) {
+    res.send('you typed attribute(s) wrong');
+  } else {
+    const newImgName = `${imgName}_${imgWidth}_${imgHeight}.jpg`;
+    fs.access(`./public/thumbnails/${newImgName}`, (err) => {
+      if (err) {
+        fs.access(`./public/images/${imgName}.jpg`, (err) => {
+          if (err) {
+            res.send('file does not exist');
+          } else {
+            fs.readFile(`./public/images/${imgName}.jpg`, (err, data) => {
+              if (err) throw err;
+              sharp(data)
+                .resize(parseInt(imgWidth), parseInt(imgHeight))
+                .toFile(`./public/thumbnails/${newImgName}`);
+              res.send(`<img src="/thumbnails/${newImgName}" />`);
+            });
+          }
+        });
+      } else {
+        res.send(`<img src="/thumbnails/${newImgName}" />`);
+      }
+    });
+  }
 });
 
 export default routes;

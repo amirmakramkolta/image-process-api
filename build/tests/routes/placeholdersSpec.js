@@ -40,11 +40,11 @@ var __importDefault =
 Object.defineProperty(exports, '__esModule', { value: true });
 const supertest_1 = __importDefault(require('supertest'));
 const index_1 = __importDefault(require('./../../index'));
-describe('the image endpoint responses', () => {
-  it('should return type = text/html from image', () =>
+describe('the placeholder endpoint response', () => {
+  it('should return type = text/html from placeholder', () =>
     __awaiter(void 0, void 0, void 0, function* () {
       const response = yield (0, supertest_1.default)(index_1.default).get(
-        '/image?name=fjord&width=300&height=300'
+        '/placeholder?width=300&height=300'
       );
       expect(response.type).toEqual('text/html');
     }));

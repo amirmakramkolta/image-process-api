@@ -10,6 +10,7 @@
     "start": "nodemon src/index.ts",
     "lint": "eslint *.js",
     "lint-ts": "eslint **/*.ts",
+    "lint-ts-fix":"eslint **/*.ts --fix",
     "prettier": "prettier --config .prettierrc *.js --write",
     "prettier-ts": "prettier --config .prettierrc **/*.ts --write"
   },
