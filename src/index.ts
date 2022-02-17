@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.use('/image', imageRoute);
 app.use('/placeholder', placeholderRoute);
 
-app.listen(port, () => {
+app.listen(port, (): void => {
   console.log(`listen to port: http://localhost:${port}`);
 });
 export default app;

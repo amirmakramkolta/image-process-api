@@ -2,15 +2,15 @@
 
 ## endpoints
 
-### /image
+### /image/get-image
 you have to add query to make it work 
-example: http://localhost/image?name=imageName&width=100&height=100
+example: http://localhost:5000/image/get-image?name=imageName&width=100&height=100
 
 if you miss any of this attributes (name, width, height) it will show a message that you miss somthing
 
-### /placeholder
+### /placeholder/get-placeholder
 you have to add query to make it work
-example: http://localhost/placeholder?width=100&height=100
+example: http://localhost:5000/placeholder/get-placeholder?width=100&height=100
 
 if you miss any of this attributes (width, height) it will show a message that you miss something
 
@@ -32,16 +32,17 @@ if you miss any of this attributes (width, height) it will show a message that y
 * "prettier": "^2.5.1"
 * "tsc-node": "^0.0.3"
 * "typescript": "^4.5.5"
+* "g": "^2.0.1"
+* "jasmine": "^4.0.2"
+* "jasmine-spec-reporter": "^7.0.0"
+* "supertest": "^6.2.2"
+* "ts-node": "^10.5.0"
 
 for runtime I used:
 
 - "express": "^4.17.2"
-- "g": "^2.0.1"
-- "jasmine": "^4.0.2"
-- "jasmine-spec-reporter": "^7.0.0"
 - "sharp": "^0.30.1"
-- "supertest": "^6.2.2"
-- "ts-node": "^10.5.0"
+
 
 ## scripts I used
 
