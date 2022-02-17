@@ -20,6 +20,8 @@ function createResisedImage(data, newWidth, newHeight, path) {
     });
 }
 function imgInHtml(name) {
-    return `<img src="/thumbnails/${name}" />`;
+    return __awaiter(this, void 0, void 0, function* () {
+        return `<img src="/thumbnails/${name}" />`;
+    });
 }
 exports.default = { createResisedImage, imgInHtml };

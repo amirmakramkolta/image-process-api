@@ -31,7 +31,7 @@ routes.get('/get-image', (req, res) => {
     }
     else {
         const newImgName = `${imgName}_${imgWidth}_${imgHeight}.jpg`;
-        fs_1.default.access(`./public/thumbnails/${newImgName}`, (err) => {
+        fs_1.default.access(`./public/thumbnails/${newImgName}`, (err) => __awaiter(void 0, void 0, void 0, function* () {
             if (err) {
                 fs_1.default.access(`./public/images/${imgName}.jpg`, (err) => {
                     if (err) {
@@ -40,23 +40,27 @@ routes.get('/get-image', (req, res) => {
                     }
                     else {
                         fs_1.default.readFile(`./public/images/${imgName}.jpg`, (err, data) => __awaiter(void 0, void 0, void 0, function* () {
-                            if (err)
-                                throw err;
-                            imageUtilities_1.default.createResisedImage(data, parseInt(imgWidth), parseInt(imgHeight), `./public/thumbnails/${newImgName}`)
+                            if (err) {
+                                console.log(err);
+                            }
+                            imageUtilities_1.default
+                                .createResisedImage(data, parseInt(imgWidth), parseInt(imgHeight), `./public/thumbnails/${newImgName}`)
                                 .then((data) => {
                                 console.log(data);
                             });
                             res.status(200);
-                            res.send(imageUtilities_1.default.imgInHtml(newImgName));
+                            const tag = yield imageUtilities_1.default.imgInHtml(newImgName);
+                            res.send(tag);
                         }));
                     }
                 });
             }
             else {
                 res.status(200);
-                res.send(imageUtilities_1.default.imgInHtml(newImgName));
+                const tag = yield imageUtilities_1.default.imgInHtml(newImgName);
+                res.send(tag);
             }
-        });
+        }));
     }
 });
 exports.default = routes;

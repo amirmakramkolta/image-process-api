@@ -10,5 +10,5 @@ function placeholderInHtml(width, height) {
         `;
 }
 exports.default = {
-    placeholderInHtml
+    placeholderInHtml,
 };
