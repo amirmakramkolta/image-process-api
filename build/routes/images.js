@@ -25,7 +25,10 @@ routes.get('/get-image', (req, res) => {
         res.status(400);
         res.send('Their is attribute(s) in query is missing');
     }
-    else if (isNaN(parseInt(imgHeight)) || isNaN(parseInt(imgWidth))) {
+    else if (isNaN(parseInt(imgHeight)) ||
+        isNaN(parseInt(imgWidth)) ||
+        parseInt(imgWidth) <= 0 ||
+        parseInt(imgHeight) <= 0) {
         res.status(400);
         res.send('you typed attribute(s) wrong');
     }
@@ -49,8 +52,10 @@ routes.get('/get-image', (req, res) => {
                                 console.log(data);
                             });
                             res.status(200);
-                            const tag = yield imageUtilities_1.default.imgInHtml(newImgName);
-                            res.send(tag);
+                            setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
+                                const tag = yield imageUtilities_1.default.imgInHtml(newImgName);
+                                res.send(tag);
+                            }), 1000);
                         }));
                     }
                 });
